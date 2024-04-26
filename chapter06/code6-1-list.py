@@ -30,5 +30,16 @@ print(len(list3)) # 求元素个数
 print(max(list3)) # 求元素的最大值
 print(min(list3)) # 求元素的最小值
 
-del list3
+# del list3
 # print(list3)  #删除生效
+
+print('-' * 30)
+# 列表的遍历
+for i in list3:
+    print(i)
+
+for i, j in enumerate(list2):
+    print(i,j)
+
+for i in range(len(list2)):
+    print(i, list2[i])
