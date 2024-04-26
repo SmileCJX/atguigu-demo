@@ -67,3 +67,11 @@ print(list3)
 # 清空列表
 list3.clear()
 print(list3)
+
+# 计算若干个人的平均年龄
+age = [10, 20, 30, 40, 23, 45]
+total = 0
+for i in age:
+    total += i
+print(total / len(age))
+print(sum(age) / len(age))
