@@ -30,3 +30,50 @@ print(str1)
 print(type(str1))
 print(str1[2])
 print(str1[4])
+
+# 序列的通用操作
+# 索引
+print('*' * 30)
+print(tuple1[-1])
+# 切片
+print(tuple1[::-1])
+# len
+print(len(tuple1))
+print(max(tuple6), min(tuple6))
+
+# del
+del tuple5
+# print(tuple5)
+
+# +
+print(tuple1 + tuple6)
+# *
+print(tuple1 * 3)
+# in
+print(1 in tuple1)
+
+print(list1)
+list1[2] = 5
+print(list1)
+
+# 不支持修改
+# tuple1[1] = 4
+# print(tuple1)
+
+# 元组的常用方法
+print(tuple1)
+a = tuple1.count('hello')
+print(a)
+a = tuple1.index(2)
+print(a)
+
+# 元组的遍历
+print('*' * 30)
+for i in tuple1:
+    print(i)
+
+for index, value in enumerate(tuple1):
+    print(index, value)
+
+for i in range(len(tuple1)):
+    print(i, tuple1[i])
