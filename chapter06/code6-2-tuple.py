@@ -75,5 +75,6 @@ for i in tuple1:
 for index, value in enumerate(tuple1):
     print(index, value)
 
+# range是一个迭代器，不是一次性生成的，减少内存空间
 for i in range(len(tuple1)):
     print(i, tuple1[i])
