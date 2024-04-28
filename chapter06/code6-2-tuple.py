@@ -15,3 +15,9 @@ print(type(tuple3))
 tuple4 = ()
 print(tuple4)
 print(type(tuple4))
+
+tuple5 = tuple('hello') # str --> tuple
+print(tuple5)
+
+tuple6 = tuple([1, 2, 3, 4]) # list --> tuple
+print(tuple6)
