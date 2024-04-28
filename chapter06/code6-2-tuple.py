@@ -16,8 +16,17 @@ tuple4 = ()
 print(tuple4)
 print(type(tuple4))
 
+# 类型转换做尝试
 tuple5 = tuple('hello') # str --> tuple
 print(tuple5)
 
 tuple6 = tuple([1, 2, 3, 4]) # list --> tuple
 print(tuple6)
+
+list1 = list(tuple6) # tuple --> list
+print(list1)
+str1 = str(tuple6) # tuple --> str
+print(str1)
+print(type(str1))
+print(str1[2])
+print(str1[4])
