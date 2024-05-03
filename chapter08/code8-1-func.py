@@ -36,11 +36,26 @@ print(s)
 print(jack)
 
 # 可变参数
-def total(*a): # 可变参数
+def total(*args): # 可变参数
     result = 0
-    for i in a:
-        result +=i
+    for i in args:
+        result += i * i
     return result
 
-result = total([1, 4, 5, 6, 7, 8, 3])
+result = total(1, 4, 5, 6, 7, 8, 3)
 print(result)
+
+result = total(3, 4, 5)
+print(result)
+
+a = [1, 2, 3, 4, 5]
+result = total(*a)
+print(result)
+
+
+def f(**kwargs): # 可变参数，接收字典
+    for k, v in kwargs.items():
+        print(k, v)
+
+d = {'name': 'xiaoming', 'age': 18}
+f(**d)
