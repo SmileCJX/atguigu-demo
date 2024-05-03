@@ -35,3 +35,12 @@ jack = infos('jack', gender='男')
 print(s)
 print(jack)
 
+# 可变参数
+def total(*a): # 可变参数
+    result = 0
+    for i in a:
+        result +=i
+    return result
+
+result = total([1, 4, 5, 6, 7, 8, 3])
+print(result)
