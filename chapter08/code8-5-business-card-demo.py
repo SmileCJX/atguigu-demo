@@ -1,4 +1,8 @@
-cards = []
+cards = [
+    {'name': 'mia', 'phone': '213', 'qq': '234', 'email': '123'},
+    {'name': 'jack', 'phone': '124234', 'qq': '234234234', 'email': '12313243'},
+    {'name': 'tom', 'phone': '234', 'qq': '2341', 'email': '123928483'},
+]
 
 def menu():
     print('''欢迎使用【名片管理系统】
@@ -20,12 +24,22 @@ def new_card(name, phone, qq, email):
     cards.append(user)
     return True
 
+def modify_card():
+    pass
+
+def del_card():
+    pass
+
 def show_card():
     for card in cards:
         print(card)
 
-def query_card():
-    pass
+def query_card(kw):
+    for card in cards:
+        for k, v in card.items():
+            if kw == v:
+                return card
+    return False
 
 def quit():
     print('欢迎下次使用【名片管理系统】')
@@ -47,7 +61,17 @@ while True:
     elif op == '2':
         show_card()
     elif op == '3':
-        query_card()
+        kw = input('请输入查询的关键字：')
+        result = query_card(kw)
+        if result:
+            print(result)
+            op2 = input('输入4修改名片， 输入5删除名片：')
+            if op2 == '4':
+                modify_card()
+            if op2 == '5':
+                del_card()
+        else:
+            print('没有查到相关信息')
     elif op == '0':
         quit()
         break
