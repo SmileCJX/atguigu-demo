@@ -13,6 +13,6 @@
 # print(author)
 
 # 别名调用
-from my_module import add as f
+from my_package.my_math import add as f
 result = f(3, 4)
 print(result)
