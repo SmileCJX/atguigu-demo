@@ -27,8 +27,9 @@ print(ord('A'))
 # print(a)
 
 print('*' * 30)
-from my_package import my_tools
+from my_package import my_tools, my_games
 print(my_tools.random_string(5))
 
 random.shuffle(list1)
 print(list1)
+my_games.game1()
