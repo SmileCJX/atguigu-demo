@@ -21,3 +21,15 @@ def game1(): # 石头剪刀布
         print('电脑胜利')
 
 # game1()
+
+def guess_number(start, end):
+    number = random.randint(start, end)
+    while True:
+        player = int(input('请输入你猜的数字：'))
+        if player == number:
+            print('猜中了！')
+            break
+        elif player > number:
+            print('猜大了！')
+        else:
+            print('猜小了！')

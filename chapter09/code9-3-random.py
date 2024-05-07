@@ -32,4 +32,5 @@ print(my_tools.random_string(5))
 
 random.shuffle(list1)
 print(list1)
-my_games.game1()
+# my_games.game1()
+my_games.guess_number(1, 1000)
