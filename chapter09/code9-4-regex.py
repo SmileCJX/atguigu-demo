@@ -24,3 +24,7 @@ print(result)
 # |: 或
 result = re.match(r'a|b|c', 'ba')
 print(result)
+
+# 身份证号
+result = re.match(r'^\d{6}((20[012][01234)])|(1[89]\d\d))\d{7}([\dX])$', '350123199601190328')
+print(result)
