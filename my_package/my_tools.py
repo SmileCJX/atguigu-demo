@@ -1,4 +1,4 @@
-import random
+import random, re
 a = []
 n = 5
 
@@ -26,3 +26,15 @@ def main():
     print(qrcode(8))
 
 # main()
+
+def is_phone_number(phone):
+    result = re.match(r'^1\d{10}$', phone)
+    if result == None:
+        return '非法手机号!'
+    return '正确的手机号'
+
+def is_id_number(idNumber):
+    result = re.match(r'^\d{6}((20[012][01234)])|(1[89]\d\d))\d{7}([\dX])$', idNumber)
+    if result == None:
+        return '非法证件号!'
+    return '正确的证件号'

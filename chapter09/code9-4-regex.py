@@ -28,3 +28,10 @@ print(result)
 # 身份证号
 result = re.match(r'^\d{6}((20[012][01234)])|(1[89]\d\d))\d{7}([\dX])$', '350123199601190328')
 print(result)
+
+
+from my_package import my_tools
+# 手机号码
+# result = re.match(r'^1\d{10}$', '12345678911')
+print(my_tools.is_phone_number('123456789111'))
+print(my_tools.is_id_number('3501231996101190328'))
