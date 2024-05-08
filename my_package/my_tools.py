@@ -1,4 +1,4 @@
-import random, re
+import random, re, time
 a = []
 n = 5
 
@@ -38,3 +38,8 @@ def is_id_number(idNumber):
     if result == None:
         return '非法证件号!'
     return '正确的证件号'
+
+def get_time():
+    t = time.localtime() # 结构化的时间
+    s = time.strftime('%Y-%m-%d %H:%M:%S', t)
+    return s
