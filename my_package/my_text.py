@@ -39,20 +39,21 @@ def menu():
     ''')
     print('*' * 30)
 
-menu()
-while True:
-    op = input('请输入你的选择：')
-    if op == '1':
-        if write_txt():
-            print('日记保存成功！')
-    elif op == '2':
-        day = input('请输入你的查询日期(查询全部请输入-1)')
-        if read_txt(day):
-            print('日记加载完毕！')
+def main():
+    menu()
+    while True:
+        op = input('请输入你的选择：')
+        if op == '1':
+            if write_txt():
+                print('日记保存成功！')
+        elif op == '2':
+            day = input('请输入你的查询日期(查询全部请输入-1)')
+            if read_txt(day):
+                print('日记加载完毕！')
+            else:
+                print('未查询到日记信息，请重试')
+        elif op == '3':
+            quit()
+            break
         else:
-            print('未查询到日记信息，请重试')
-    elif op == '3':
-        quit()
-        break
-    else:
-        print('请重新选择')
+            print('请重新选择')
