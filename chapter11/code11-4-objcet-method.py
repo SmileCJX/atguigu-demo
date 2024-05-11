@@ -19,6 +19,30 @@ class Player(object):
         if index1 < len(Player.levels) - 1:
             self.level = Player.levels[index1 + 1]
 
+    def get_weapon(self, weapon):
+        self.weapon = weapon
+
+    def show_weapon(self):
+        return self.weapon.show_weapon()
+
+class weapon(object):
+    numbers = 0
+    max_damage = 10000
+    levels = ['青铜','白银','黄金','钻石','王者']
+    def __init__(self,name,damage,level):
+        self.name = name
+        self.damage = damage
+        self.level = level
+        weapon.numbers += 1
+        if damage>weapon.max_damage:
+            raise Exception('最大的伤害值是10000，请重试！')
+        if level not in weapon.levels:
+            raise Exception('段位设置错误！')
+
+    def show_weapon(self):
+        for k,v in self.__dict__.items():
+            print(k,v)
+
 
 cjx = Player('cjx', 24, '大连', '青铜')
 cjx.show()
@@ -32,4 +56,8 @@ cjx.level_up()
 cjx.show()
 cjx.level_up()
 cjx.show()
+
+gun = weapon('magic_gun',1000,'青铜')
+cjx.get_weapon(gun)
+cjx.show_weapon()
 

@@ -15,7 +15,7 @@ print('欢迎荣耀王者的第 %d 个玩家注册！' % Player.numbers)
 class weapon(object):
     numbers = 0
     max_damage = 1000
-    level = ['青铜', '白银', '钻石', '王者']
+    level = ['青铜', '白银', '黄金', '钻石', '王者']
     def __init__(self, name, damage, level):
         self.name = name
         self.damage = damage
