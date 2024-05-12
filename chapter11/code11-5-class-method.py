@@ -30,9 +30,11 @@ class Player(object):
         print('荣耀王者的用户数据已经达到了%d人' % cls.numbers)
 
 class weapon(object):
+    # 类属性
     numbers = 0
     max_damage = 10000
     levels = ['青铜','白银','黄金','钻石','王者']
+    all_weapons = []
     def __init__(self,name,damage,level):
         self.name = name
         self.damage = damage
@@ -42,11 +44,27 @@ class weapon(object):
             raise Exception('最大的伤害值是10000，请重试！')
         if level not in weapon.levels:
             raise Exception('段位设置错误！')
+        weapon.all_weapons.append(self)
+
+    @classmethod
+    def get_max_damage(cls):
+        max_damage = 0
+        for w in cls.all_weapons:
+            if w.damage > max_damage:
+                max_damage = w.damage
+        return max_damage
 
     def show_weapon(self):
         for k,v in self.__dict__.items():
             print(k,v)
 
+
+gun = weapon('magic', 345, '青铜')
+gun2 = weapon('gun2', 789, '白银')
+print(weapon.get_max_damage())
+print(weapon.all_weapons)
+for i in weapon.all_weapons:
+    print(i.name)
 
 cjx = Player('cjx', '24', '湖北', '青铜')
 cjx.show()
