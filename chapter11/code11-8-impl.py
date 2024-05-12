@@ -16,6 +16,11 @@ class Dog(Animal):
     def speak(self):
         print('汪汪')
 
+class Test(object):
+
+    def speak(self):
+        print('test')
+
 
 def speak(object): # animal
     object.speak()
@@ -27,7 +32,9 @@ speak(animal)
 
 kitty = Cat()
 putty = Dog()
+t = Test()
 speak(kitty)
 speak(putty)
+speak(t)
 # kitty.speak()
 # putty.speak()
