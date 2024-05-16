@@ -71,6 +71,7 @@ class Cla(object):
                 print(i.name)
         print('*' * 15 + '班级信息' + '*' * 15)
 
+
     def add_students(self, student): # 增加学生
         if student in self.students:
             raise Exception('此学生已经进班，不允许重复操作！')
