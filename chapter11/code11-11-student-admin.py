@@ -203,3 +203,5 @@ python.show_infos()
 lily.show_infos()
 
 print(Course.show_courselist())
+python.name = 'python精讲课程'
+print(python.name)
