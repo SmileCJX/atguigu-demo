@@ -84,8 +84,31 @@ class Cla(object):
             return True
         else:
             raise Exception('此学生不在班级！')
-class Course(object):
-    pass
+class Course(object): # 课程
+    # 属性：课名、课程id、老师、学生列表、课程性质、课程容量
+    def __init__(self, name, id_number, teacher, students, type, number):
+        self.name = name
+        self.id_number = id_number
+        self.teacher = teacher
+        self.students = students
+        self.type = type
+        self.number = number
+
+    def show_infos(self):
+        print('*' * 15 + '课程信息' + '*' * 15)
+        print('课程名称：%s' % self.name)
+        print('课程号：%d' % self.id_number)
+        print('授课老师：%s' % self.teacher.name)
+        print('是否是选修课：%s' % self.type)
+        print('课程容量： %d' % self.number)
+        print('学生信息：')
+        if not self.students:
+            print('空')
+        else:
+            for i in self.students:
+                print(i.name)
+        print('*' * 15 + '课程信息' + '*' * 15)
+
 
 cjx = Student('cjx', 20, '男', 1)
 rose = Student('rose', 21, '女', 2)
@@ -110,4 +133,7 @@ computer_2.show_infos()
 # computer_2.show_infos()
 
 # computer_2.sub_student(rose)
-computer_2.add_students(rose)
+# computer_2.add_students(rose)
+
+python = Course('python', 1, jack, [cjx, rose], '必修课', 6)
+python.show_infos()
