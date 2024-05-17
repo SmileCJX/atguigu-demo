@@ -1,4 +1,8 @@
 import wx
+
+def onClick(event):
+    print('按钮被点击了')
+
 # 创建应用程序对象
 app = wx.App()
 # 创建窗口
@@ -10,8 +14,16 @@ frm.Show()
 pl = wx.Panel(frm, size = (400, 400), pos = (100, 100))
 # 显示面板
 pl.Show()
-# 显示静态文本
+# 创建静态文本
 staticText = wx.StaticText(pl, label = '欢迎学习python', pos = (100, 100))
+# 显示静态文本
+staticText.Show()
+# 创建按钮
+btn = wx.Button(pl, label = '测试')
+# 显示按钮
+btn.Show()
+# 给按钮绑定事件
+frm.Bind(wx.EVT_BUTTON, onClick, btn)
 
 # 进入主循环，让窗口一直显示
 app.MainLoop()
