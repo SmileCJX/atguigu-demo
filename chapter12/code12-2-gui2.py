@@ -18,5 +18,5 @@ frm = MyFrame()
 # 显示窗口
 frm.Show()
 
-# 让窗口一直显示
+# 让窗口一直显示，保持应用常驻
 app.MainLoop()
