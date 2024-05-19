@@ -17,6 +17,7 @@ class MyFrame(wx.Frame):
 
     def onClick(self, event): # 抽奖
         print('click')
+        self.staticText.SetLabelText(random.choice(self.NameList))
 
 # 创建应用对象
 app = wx.App()
