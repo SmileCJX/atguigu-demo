@@ -12,11 +12,11 @@ class MyFrame(wx.Frame):
                           , None
                           , title = "简单计算器"
                           , pos = (100, 100)
-                          , size = (500, 800))
+                          , size = (300, 500))
         # 创建面板
-        self.pl = wx.Panel(self, pos = (0, 0), size = (500, 800))
+        self.pl = wx.Panel(self, pos = (0, 0), size = (300, 400))
         # 创建文本框
-        self.entry = wx.TextCtrl(self.pl, pos = (10, 10), size = (400, 50), style = wx.TE_RIGHT)
+        self.entry = wx.TextCtrl(self.pl, pos = (10, 10), size = (300, 50), style = wx.TE_RIGHT)
         # 创建按钮
         # 第一行的四个按钮
         self.btn_clear = wx.Button(self.pl, label='C', pos = (self.pos_x, self.pos_y), size = (self.btn_w, self.btn_h))
@@ -39,8 +39,8 @@ class MyFrame(wx.Frame):
         self.btn_3 = wx.Button(self.pl, label='3', pos = (self.pos_x + 120, self.pos_y + 180), size = (self.btn_w, self.btn_h))
         self.btn_eq = wx.Button(self.pl, label='=', pos = (self.pos_x + 180, self.pos_y + 180), size = (self.btn_w, self.btn_h))
         # 第五行的两个按钮
-        self.btn_0 = wx.Button(self.pl, label='0', pos = (self.pos_x, self.pos_y + 240), size = (self.btn_w, self.btn_h))
-        self.btn_point = wx.Button(self.pl, label='.', pos = (self.pos_x + 180, self.pos_y + 240), size = (self.btn_w, self.btn_h))
+        self.btn_0 = wx.Button(self.pl, label='0', pos = (self.pos_x, self.pos_y + 240), size = (self.btn_w + 50, self.btn_h))
+        self.btn_point = wx.Button(self.pl, label='.', pos = (self.pos_x + 120, self.pos_y + 240), size = (self.btn_w + 50, self.btn_h))
 
         # 绑定按钮对应的事件
         self.Bind(wx.EVT_BUTTON, self.On_btn_clear, self.btn_clear)
@@ -111,8 +111,7 @@ class MyFrame(wx.Frame):
 
     def On_btn_back(self, event):
         text = self.entry.GetValue()
-        result = str(eval(text))
-        self.entry.SetValue(result)
+        self.entry.SetValue(text[:-1])
 
     def On_btn_clear(self, event):
         self.entry.Clear()
