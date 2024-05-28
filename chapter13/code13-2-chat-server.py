@@ -26,6 +26,17 @@ class Server(wx.Frame):
         save_text_btn = wx.Button(self.pl, pos = (220, 10), size = (200, 40), label = '保存聊天记录')
         # 创建聊天内容文本框
         self.text = wx.TextCtrl(self.pl, size=(400, 400), pos=(10, 60), style=wx.TE_READONLY|wx.TE_MULTILINE)
+        # 给按钮绑定事件
+        self.Bind(wx.EVT_BUTTON, self.start_server, start_server_btn)
+        self.Bind(wx.EVT_BUTTON, self.save_text, save_text_btn)
+
+    # 启动服务器
+    def start_server(self, event):
+        print('start server')
+
+    # 保存聊天记录
+    def save_text(self, event):
+        print("save text")
 
 # 程序入口
 if __name__ == '__main__':
