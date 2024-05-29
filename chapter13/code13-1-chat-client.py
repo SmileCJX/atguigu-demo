@@ -42,21 +42,22 @@ class Client(wx.Frame):
             self.client_socket = socket()
             self.client_socket.connect(('127.0.0.1', 8999))
             # 发送用户名
-            self.client_socket.send(self.name.encode('utf-8'))
+            self.client_socket.send(self.name.encode('utf8'))
 
             main_thread = threading.Thread(target=self.recv_data)
-            main_thread.daemon = True
+            main_thread.daemon=True
             main_thread.start()
 
     def recv_data(self):
         while self.isConnectd:
-            text = self.client_socket.recv(1024).encode('utf-8')
+            text = self.client_socket.recv(1024).decode('utf8')
+            print(text)
             self.text.AppendText(text + '\n')
 
     # 点击 离开聊天室 按钮 触发
     def dis_conn(self, event):
         print('dis_conn')
-        self.client_socket.send('断开连接'.encode('utf-8'))
+        self.client_socket.send('断开连接'.encode('utf8'))
         self.isConnectd = False
 
     # 点击 清空 按钮 触发
@@ -70,7 +71,7 @@ class Client(wx.Frame):
         if self.isConnectd:
             text = self.input_text.GetValue()
             if text != '':
-                self.client_socket.send(text.encode('utf-8'))
+                self.client_socket.send(text.encode('utf8'))
                 self.input_text.Clear()
 
 # 程序入口

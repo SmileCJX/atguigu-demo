@@ -13,6 +13,10 @@ class Server(wx.Frame):
         self.server_socket.bind(('0.0.0.0',8999))
         # 监听
         self.server_socket.listen(5)
+        # 保存所有的客户端
+        self.client_thread_dict = {}
+        # 创建线程池
+        self.pool = ThreadPoolExecutor(max_workers=10)
 
         # 界面布局的操作
         # 调用父类的init方法
@@ -46,13 +50,43 @@ class Server(wx.Frame):
         while self.isOn:
             client_socket, client_addr = self.server_socket.accept()
             print(client_addr)
-            client_name = client_socket.recv(1024).decode('utf-8')
+            client_name = client_socket.recv(1024).decode('utf8')
             print(client_name)
+            client_thread = ClientThread(client_socket, client_name, self)
+            # 保存到客户端
+            self.client_thread_dict[client_name] = client_thread
+            self.pool.submit(client_thread.run)
+            self.send("【服务器通知】欢迎%s进入聊天室" % client_name)
 
+    def send(self, text):
+        for client in self.client_thread_dict.values():
+            if client.isOn:
+                client.client_socket.send(text.encode('utf8'))
 
     # 保存聊天记录
     def save_text(self, event):
         print("save text")
+        record = self.text.GetValue()
+        with open('record.log', "a+", encoding='GBK') as f:
+            f.write(record)
+
+class ClientThread(threading.Thread):
+    def __init__(self, socket, name, server):
+        threading.Thread.__init__(self)
+        self.client_socket = socket
+        self.client_name = name
+        self.server = server
+        self.isOn = True
+
+    def run(self):
+        while self.isOn:
+            text = self.client_socket.recv(1024).decode('utf-8')
+            if text == '断开连接':
+                self.isOn = False
+                self.server.send('【服务器消息】%s离开了聊天室' % self.client_name)
+            else:
+                self.server.send('【%s】%s' % (self.client_name, text))
+        self.client_socket.close()
 
 # 程序入口
 if __name__ == '__main__':
