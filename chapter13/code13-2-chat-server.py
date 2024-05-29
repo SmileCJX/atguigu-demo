@@ -33,6 +33,22 @@ class Server(wx.Frame):
     # 启动服务器
     def start_server(self, event):
         print('start server')
+        if not self.isOn:
+            self.isOn = True
+            # 创建线程
+            main_thread = threading.Thread(target=self.main_thread_fun)
+            # 设置为守护线程
+            main_thread.daemon = True
+            # 启动线程
+            main_thread.start()
+
+    def main_thread_fun(self):
+        while self.isOn:
+            client_socket, client_addr = self.server_socket.accept()
+            print(client_addr)
+            client_name = client_socket.recv(1024).decode('utf-8')
+            print(client_name)
+
 
     # 保存聊天记录
     def save_text(self, event):
