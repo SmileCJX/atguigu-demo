@@ -32,7 +32,7 @@
 import pandas as pd
 
 # 读取Excel文件
-file_path = '/Users/caijunxiang/IdeaProjects/python/atguigu-demo/work/index-script.xlsx'  # 替换为你的文件路径
+file_path = '/doc/index-script.xlsx'  # 替换为你的文件路径
 df = pd.read_excel(file_path, header=None, skiprows=1)  # 跳过第一行（标题行）
 
 # 生成SQL语句
@@ -60,7 +60,7 @@ for index, row in df.iterrows():
     sql_statements.append(f"CREATE INDEX IDX_{table_name}_DWS_BIZ_TIME ON DAM_DW.DWS_{table_name}(DWS_BIZ_TIME) ONLINE;")
 
 # 写入SQL文件
-with open('indexes.sql', 'w') as file:
+with open('../doc/indexes.sql', 'w') as file:
     file.write('\n'.join(sql_statements))
 
 print("SQL文件生成完毕：indexes.sql")
