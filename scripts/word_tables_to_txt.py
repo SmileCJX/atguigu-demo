@@ -36,12 +36,12 @@ def word_tables_to_sql(word_path, txt_path, table_name='das_biz.das_catalogue_ds
 
     # 数据类型映射字典
     type_mapping = {
-        '字符串': '15',
-        '数值': '4',
-        '日期': '93',
-        '时间': '92',
-        '日期时间': '93',
-        '布尔': '16'
+        '字符串': {'type': '15', 'length': None},  # None表示使用表格中的值
+        '数值': {'type': '4', 'length': None},
+        '日期': {'type': '09', 'length': '10'},  # 日期固定长度为10
+        '时间': {'type': '12', 'length': '19'},  # 时间固定长度为19
+        '日期时间': {'type': '12', 'length': '19'},  # 日期时间也使用19
+        '布尔': {'type': '16', 'length': None}
     }
 
     # 固定参数
@@ -68,12 +68,26 @@ def word_tables_to_sql(word_path, txt_path, table_name='das_biz.das_catalogue_ds
                 if len(cells) < 6:  # 确保至少有6列数据
                     continue
 
+                # 获取数据类型（转为小写去除前后空格）
+                data_type = cells[2].strip().lower()
+
+                # 查找匹配的数据类型（不区分大小写）
+                matched_type = None
+                for type_name, type_info in type_mapping.items():
+                    if type_name.lower() == data_type:
+                        matched_type = type_info
+                        break
+
+                # 如果没有匹配到，默认使用字符串类型
+                if not matched_type:
+                    matched_type = type_mapping['字符串']
+
                 # 解析表格数据
                 data_item = {
                     'item_name': cells[0],  # 数据项
                     'item_en_name': cells[1],  # 字段名
-                    'item_type': type_mapping.get(cells[2], '15'),  # 数据类型
-                    'item_length': cells[3],  # 类型长度
+                    'item_type': matched_type['type'],  # 数据类型代码
+                    'item_length': matched_type['length'] if matched_type['length'] is not None else cells[3],  # 类型长度
                     'item_nullable': '0' if cells[4] == '必填' else '1',  # 填报要求
                     'item_key_flag': '1' if '主键' in cells[5] else '0',  # 是否主键
                     'create_time': datetime.datetime.now().strftime('%Y%m%d%H%M%S')
